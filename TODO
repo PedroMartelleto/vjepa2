@@ -1,3 +1,6 @@
 1 - Find an easy way to evaluate JEPA
 
 2 - finetune JEPA (D4RT deocder) on the MPI dataset
+
+- UV queries + include image patch
+- target times
