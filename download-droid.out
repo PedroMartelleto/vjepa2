@@ -1,0 +1,110 @@
+Looking in indexes: https://pypi.org/simple, https://pypi.ngc.nvidia.com
+Collecting gsutil
+  Downloading gsutil-5.35.tar.gz (3.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.0/3.0 MB 68.9 MB/s eta 0:00:00
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting argcomplete>=3.6.2 (from gsutil)
+  Downloading argcomplete-3.6.3-py3-none-any.whl.metadata (16 kB)
+Collecting crcmod>=1.7 (from gsutil)
+  Downloading crcmod-1.7.tar.gz (89 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: fasteners>=0.14.1 in /usr/local/lib/python3.12/dist-packages (from gsutil) (0.19)
+Collecting gcs-oauth2-boto-plugin>=3.3 (from gsutil)
+  Downloading gcs_oauth2_boto_plugin-3.3.tar.gz (22 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting google-apitools>=0.5.32 (from gsutil)
+  Downloading google_apitools-0.5.35-py3-none-any.whl.metadata (2.7 kB)
+Collecting httplib2==0.20.4 (from gsutil)
+  Downloading httplib2-0.20.4-py3-none-any.whl.metadata (2.5 kB)
+Collecting google-reauth>=0.1.0 (from gsutil)
+  Downloading google_reauth-0.1.1-py2.py3-none-any.whl.metadata (2.6 kB)
+Collecting monotonic>=1.4 (from gsutil)
+  Downloading monotonic-1.6-py2.py3-none-any.whl.metadata (1.5 kB)
+Collecting pyOpenSSL<=24.2.1,>=0.13 (from gsutil)
+  Downloading pyOpenSSL-24.2.1-py3-none-any.whl.metadata (13 kB)
+Collecting retry_decorator>=1.0.0 (from gsutil)
+  Downloading retry_decorator-1.1.1.tar.gz (3.9 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Requirement already satisfied: six>=1.17.0 in /usr/local/lib/python3.12/dist-packages (from gsutil) (1.17.0)
+Collecting google-auth==2.39.0 (from google-auth[aiohttp]==2.39.0->gsutil)
+  Downloading google_auth-2.39.0-py2.py3-none-any.whl.metadata (6.2 kB)
+Collecting google-auth-httplib2>=0.2.0 (from gsutil)
+  Downloading google_auth_httplib2-0.3.0-py3-none-any.whl.metadata (3.1 kB)
+Requirement already satisfied: cachetools<6.0,>=2.0.0 in /usr/local/lib/python3.12/dist-packages (from google-auth==2.39.0->google-auth[aiohttp]==2.39.0->gsutil) (5.5.0)
+Collecting pyasn1-modules>=0.2.1 (from google-auth==2.39.0->google-auth[aiohttp]==2.39.0->gsutil)
+  Downloading pyasn1_modules-0.4.2-py3-none-any.whl.metadata (3.5 kB)
+Collecting rsa<5,>=3.1.4 (from google-auth==2.39.0->google-auth[aiohttp]==2.39.0->gsutil)
+  Downloading rsa-4.9.1-py3-none-any.whl.metadata (5.6 kB)
+Requirement already satisfied: aiohttp<4.0.0,>=3.6.2 in /usr/local/lib/python3.12/dist-packages (from google-auth[aiohttp]==2.39.0->gsutil) (3.11.10)
+Requirement already satisfied: requests<3.0.0,>=2.20.0 in /usr/local/lib/python3.12/dist-packages (from google-auth[aiohttp]==2.39.0->gsutil) (2.32.3)
+Requirement already satisfied: pyparsing!=3.0.0,!=3.0.1,!=3.0.2,!=3.0.3,<4,>=2.4.2 in /usr/local/lib/python3.12/dist-packages (from httplib2==0.20.4->gsutil) (3.2.1)
+  Downloading rsa-4.7.2-py3-none-any.whl.metadata (3.6 kB)
+Collecting boto>=2.29.1 (from gcs-oauth2-boto-plugin>=3.3->gsutil)
+  Downloading boto-2.49.0-py2.py3-none-any.whl.metadata (7.3 kB)
+Collecting oauth2client>=2.2.0 (from gcs-oauth2-boto-plugin>=3.3->gsutil)
+  Downloading oauth2client-4.1.3-py2.py3-none-any.whl.metadata (1.2 kB)
+Collecting pyasn1>=0.1.3 (from rsa<5,>=3.1.4->google-auth==2.39.0->google-auth[aiohttp]==2.39.0->gsutil)
+  Downloading pyasn1-0.6.2-py3-none-any.whl.metadata (8.4 kB)
+Collecting pyu2f (from google-reauth>=0.1.0->gsutil)
+  Downloading pyu2f-0.1.5.tar.gz (27 kB)
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status 'done'
+Collecting cryptography<44,>=41.0.5 (from pyOpenSSL<=24.2.1,>=0.13->gsutil)
+  Downloading cryptography-43.0.3-cp39-abi3-manylinux_2_28_aarch64.whl.metadata (5.4 kB)
+Requirement already satisfied: aiohappyeyeballs>=2.3.0 in /usr/local/lib/python3.12/dist-packages (from aiohttp<4.0.0,>=3.6.2->google-auth[aiohttp]==2.39.0->gsutil) (2.4.4)
+Requirement already satisfied: aiosignal>=1.1.2 in /usr/local/lib/python3.12/dist-packages (from aiohttp<4.0.0,>=3.6.2->google-auth[aiohttp]==2.39.0->gsutil) (1.3.2)
+Requirement already satisfied: attrs>=17.3.0 in /usr/local/lib/python3.12/dist-packages (from aiohttp<4.0.0,>=3.6.2->google-auth[aiohttp]==2.39.0->gsutil) (25.1.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /usr/local/lib/python3.12/dist-packages (from aiohttp<4.0.0,>=3.6.2->google-auth[aiohttp]==2.39.0->gsutil) (1.5.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in /usr/local/lib/python3.12/dist-packages (from aiohttp<4.0.0,>=3.6.2->google-auth[aiohttp]==2.39.0->gsutil) (6.1.0)
+Requirement already satisfied: propcache>=0.2.0 in /usr/local/lib/python3.12/dist-packages (from aiohttp<4.0.0,>=3.6.2->google-auth[aiohttp]==2.39.0->gsutil) (0.2.1)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in /usr/local/lib/python3.12/dist-packages (from aiohttp<4.0.0,>=3.6.2->google-auth[aiohttp]==2.39.0->gsutil) (1.18.3)
+Requirement already satisfied: cffi>=1.12 in /usr/local/lib/python3.12/dist-packages (from cryptography<44,>=41.0.5->pyOpenSSL<=24.2.1,>=0.13->gsutil) (1.17.1)
+Requirement already satisfied: charset-normalizer<4,>=2 in /usr/local/lib/python3.12/dist-packages (from requests<3.0.0,>=2.20.0->google-auth[aiohttp]==2.39.0->gsutil) (3.4.1)
+Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.12/dist-packages (from requests<3.0.0,>=2.20.0->google-auth[aiohttp]==2.39.0->gsutil) (3.10)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.12/dist-packages (from requests<3.0.0,>=2.20.0->google-auth[aiohttp]==2.39.0->gsutil) (2.0.7)
+Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.12/dist-packages (from requests<3.0.0,>=2.20.0->google-auth[aiohttp]==2.39.0->gsutil) (2024.12.14)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.12/dist-packages (from cffi>=1.12->cryptography<44,>=41.0.5->pyOpenSSL<=24.2.1,>=0.13->gsutil) (2.22)
+Downloading google_auth-2.39.0-py2.py3-none-any.whl (212 kB)
+Downloading httplib2-0.20.4-py3-none-any.whl (96 kB)
+Downloading argcomplete-3.6.3-py3-none-any.whl (43 kB)
+Downloading rsa-4.7.2-py3-none-any.whl (34 kB)
+Downloading google_apitools-0.5.35-py3-none-any.whl (135 kB)
+Downloading google_auth_httplib2-0.3.0-py3-none-any.whl (9.5 kB)
+Downloading google_reauth-0.1.1-py2.py3-none-any.whl (17 kB)
+Downloading monotonic-1.6-py2.py3-none-any.whl (8.2 kB)
+Downloading pyOpenSSL-24.2.1-py3-none-any.whl (58 kB)
+Downloading boto-2.49.0-py2.py3-none-any.whl (1.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 293.7 MB/s eta 0:00:00
+Downloading cryptography-43.0.3-cp39-abi3-manylinux_2_28_aarch64.whl (3.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.7/3.7 MB 178.0 MB/s eta 0:00:00
+Downloading oauth2client-4.1.3-py2.py3-none-any.whl (98 kB)
+Downloading pyasn1_modules-0.4.2-py3-none-any.whl (181 kB)
+Downloading pyasn1-0.6.2-py3-none-any.whl (83 kB)
+Building wheels for collected packages: gsutil, crcmod, gcs-oauth2-boto-plugin, retry_decorator, pyu2f
+  Building wheel for gsutil (setup.py): started
+  Building wheel for gsutil (setup.py): finished with status 'done'
+  Created wheel for gsutil: filename=gsutil-5.35-py3-none-any.whl size=3790961 sha256=982f31ed9dbae8a8b03adc0b2ce0b1aff0e81e2fae4ce8cf9570af9cb0630734
+  Stored in directory: /tmp/pip-ephem-wheel-cache-gtnqage_/wheels/53/f3/bf/a86b4106e9bc8a41d941b078d0509f21434e6bbc02a69582db
+  Building wheel for crcmod (setup.py): started
+  Building wheel for crcmod (setup.py): finished with status 'done'
+  Created wheel for crcmod: filename=crcmod-1.7-cp312-cp312-linux_aarch64.whl size=31984 sha256=ee94de67ac3b26a844813b7a706dde4510585ab52b357230c326b7a906b247cb
+  Stored in directory: /tmp/pip-ephem-wheel-cache-gtnqage_/wheels/76/08/0b/caa8b1380122cbfe6a03eaccbec0f63c67e619af4e30ca5e2a
+  Building wheel for gcs-oauth2-boto-plugin (setup.py): started
+  Building wheel for gcs-oauth2-boto-plugin (setup.py): finished with status 'done'
+  Created wheel for gcs-oauth2-boto-plugin: filename=gcs_oauth2_boto_plugin-3.3-py3-none-any.whl size=24464 sha256=e8320c7a8fe8f06418fe01213e2bb0348b707f864dccba5c04a1dc8768a471c1
+  Stored in directory: /tmp/pip-ephem-wheel-cache-gtnqage_/wheels/c2/fe/85/2032f9747caa5b20c6817f453f319fd175aaeea78863b7a042
+  Building wheel for retry_decorator (setup.py): started
+  Building wheel for retry_decorator (setup.py): finished with status 'done'
+  Created wheel for retry_decorator: filename=retry_decorator-1.1.1-py2.py3-none-any.whl size=3638 sha256=e090e301942edc96ef0dab6f72d0e932c8769cbe01b76b86227a69f9eea8ca12
+  Stored in directory: /tmp/pip-ephem-wheel-cache-gtnqage_/wheels/47/d8/ff/f25b34f7d273518501f5926d0dd2565fddff96a49c8da82122
+  Building wheel for pyu2f (setup.py): started
+  Building wheel for pyu2f (setup.py): finished with status 'done'
+  Created wheel for pyu2f: filename=pyu2f-0.1.5-py3-none-any.whl size=39401 sha256=27806cf062162ec0812f2d6bdb40e0b0b9a19e9c3ec7ba3602a5bde936512f59
+  Stored in directory: /tmp/pip-ephem-wheel-cache-gtnqage_/wheels/c8/65/96/5db9bc4a34b1f0200f3cfaf6e675effad84f4d7b167e548c34
+Successfully built gsutil crcmod gcs-oauth2-boto-plugin retry_decorator pyu2f
+Installing collected packages: retry_decorator, monotonic, crcmod, boto, pyu2f, pyasn1, httplib2, argcomplete, rsa, pyasn1-modules, google-reauth, cryptography, pyOpenSSL, oauth2client, google-auth, google-auth-httplib2, google-apitools, gcs-oauth2-boto-plugin, gsutil
+Successfully installed argcomplete-3.6.3 boto-2.49.0 crcmod-1.7 cryptography-43.0.3 gcs-oauth2-boto-plugin-3.3 google-apitools-0.5.35 google-auth-2.39.0 google-auth-httplib2-0.3.0 google-reauth-0.1.1 gsutil-5.35 httplib2-0.20.4 monotonic-1.6 oauth2client-4.1.3 pyOpenSSL-24.2.1 pyasn1-0.6.2 pyasn1-modules-0.4.2 pyu2f-0.1.5 retry_decorator-1.1.1 rsa-4.7.2

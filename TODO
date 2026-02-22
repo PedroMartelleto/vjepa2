@@ -4,3 +4,7 @@
 
 - UV queries + include image patch
 - target times
+
+- Fix Vipe's dockerfile
+    Maybe remove rerun-sdk
+    Run preprocessing
