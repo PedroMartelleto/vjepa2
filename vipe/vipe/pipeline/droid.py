@@ -1,6 +1,5 @@
-# SPDX-FileCopyrightText: Copyright (c) 2026 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
-
 import logging
+import math
 
 import torch
 import torch.nn.functional as F
@@ -32,6 +31,45 @@ class CoTrackerProcessor(StreamProcessor):
         return previous_attributes | {FrameAttribute.TRACKS_2D, FrameAttribute.TRACK_VIS}
 
     def _run_tracking(self, iterator):
+
+        frames = list(iterator)
+        if not frames:
+            return
+
+        # (1, T, 3, H, W)
+        video_chunk = torch.stack([f.rgb for f in frames]).permute(0, 3, 1, 2)[None].cuda()
+        T = video_chunk.shape[1]
+
+        # 1. Initialize CoTracker's internal state using the first frame ONLY
+        self.model(video_chunk=video_chunk[:, :1], is_first_step=True, grid_size=self.grid_size)
+
+        # 2. Calculate steps and pad the video to ensure all chunks have exactly `step * 2` frames
+        num_steps = math.ceil(T / self.step)
+
+        # Total frames required to provide a full context window for the final step
+        padded_length = num_steps * self.step + self.step
+        pad_len = padded_length - T
+
+        if pad_len > 0:
+            pad_frames = video_chunk[:, -1:].repeat(1, pad_len, 1, 1, 1)
+            video_chunk_padded = torch.cat([video_chunk, pad_frames], dim=1)
+        else:
+            video_chunk_padded = video_chunk
+
+        # 3. Process video in overlapping sliding windows
+        for ind in range(0, num_steps * self.step, self.step):
+            # Extract exactly self.step * 2 frames
+            chunk = video_chunk_padded[:, ind : ind + self.step * 2]
+
+            # Predict tracks for the current window (is_first_step is implicitly False)
+            pred_tracks, pred_vis = self.model(video_chunk=chunk)
+
+            # CoTracker3 online relies on the second half of the window as "lookahead" context.
+            # We save the predictions for the *first* `self.step` frames of this window.
+            for t_local in range(self.step):
+                t_global = ind + t_local
+                if t_global < len(frames):
+                    self.tracks_cache[frames[t_global].raw_frame_idx] = (pred_tracks[0, t_local], pred_vis[0, t_local])
         frames = list(iterator)
         if not frames:
             return
@@ -39,11 +77,33 @@ class CoTrackerProcessor(StreamProcessor):
         # (1, T, 3, H, W)
         video_chunk = torch.stack([f.rgb for f in frames]).permute(0, 3, 1, 2)[None].cuda()
 
-        self.model(video_chunk=video_chunk[:, :1], is_first_step=True, grid_size=self.grid_size)
-
         T = video_chunk.shape[1]
-        for ind in range(0, T - self.step, self.step):
-            pred_tracks, pred_vis = self.model(video_chunk=video_chunk[:, ind : ind + self.step * 2])
+
+        # Calculate how many steps we need to cover all T frames
+        num_steps = math.ceil(T / self.step)
+
+        # We process in chunks of `self.step * 2`.
+        # Pad the video to ensure the final iteration always gets a full-sized window.
+        padded_length = num_steps * self.step + self.step
+        pad_len = padded_length - T
+
+        if pad_len > 0:
+            pad_frames = video_chunk[:, -1:].repeat(1, pad_len, 1, 1, 1)
+            video_chunk_padded = torch.cat([video_chunk, pad_frames], dim=1)
+        else:
+            video_chunk_padded = video_chunk
+
+        for ind in range(0, num_steps * self.step, self.step):
+            # Extract exactly self.step * 2 frames
+            chunk = video_chunk_padded[:, ind : ind + self.step * 2]
+
+            # CoTracker Online must be initialized natively on the FIRST chunk
+            if ind == 0:
+                pred_tracks, pred_vis = self.model(video_chunk=chunk, is_first_step=True, grid_size=self.grid_size)
+            else:
+                pred_tracks, pred_vis = self.model(video_chunk=chunk)
+
+            # The model predicts updates for the first `self.step` elements of the window
             for t_local in range(self.step):
                 t_global = ind + t_local
                 if t_global < len(frames):
@@ -98,7 +158,7 @@ class Lifter3DProcessor(StreamProcessor):
         y = (v - cy) * z / fy
 
         pts_cam = torch.stack([x, y, z], dim=-1)  # (N, 3)
-        
+
         # NOTE: We do NOT apply pose.
         # Output is strictly relative to the camera center at this frame.
 
