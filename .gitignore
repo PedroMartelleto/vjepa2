@@ -16,6 +16,8 @@ run_evals.py
 run_evals_v2.py
 run_pretrain.py
 
+.rrd
+
 *.egg-info/
 *.ipynb_checkpoints/
 

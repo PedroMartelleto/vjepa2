@@ -8,3 +8,6 @@
 - Fix Vipe's dockerfile
     Maybe remove rerun-sdk
     Run preprocessing
+
+
+PYTHONPATH=$(pwd) python scripts/check_droid_3d.py /iopsstor/scratch/cscs/pmartell/droid_raw/1.0.1/WEIRD/success/2024-01-16/Wed_Jan_17_00:59:57_2024/recordings/MP4/13263313.mp4 --output debug_13263313.rrd
